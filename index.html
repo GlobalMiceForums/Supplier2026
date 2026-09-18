@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GMF Euroamerican · Directorio de Proveedores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --ink: #FFFFFF;
+    --ink-soft: rgba(255,255,255,0.82);
+    --paper: #A11D22;
+    --paper-raised: #B32328;
+    --gold: #FFFFFF;
+    --gold-deep: #FDEDEA;
+    --rule: rgba(255,255,255,0.32);
+    --band: #7C1418;
+    --band-text: #FFFFFF;
+    --muted: rgba(255,255,255,0.68);
+    --shadow: rgba(0, 0, 0, 0.18);
+    --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+    --font-body: 'Work Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --paper: #7E1216;
+      --paper-raised: #8F181C;
+      --band: #5E0E11;
+      --rule: rgba(255,255,255,0.28);
+      --muted: rgba(255,255,255,0.62);
+      --shadow: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #7E1216;
+    --paper-raised: #8F181C;
+    --band: #5E0E11;
+    --rule: rgba(255,255,255,0.28);
+    --muted: rgba(255,255,255,0.62);
+    --shadow: rgba(0, 0, 0, 0.4);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    background: var(--band);
+    color: var(--band-text);
+    padding: 4.5rem 1.5rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: min(720px, 90%);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #FFFFFF, transparent);
+    opacity: 0.6;
+  }
+
+  .hero-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    color: #FFFFFF;
+    margin-bottom: 1.1rem;
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+    line-height: 1.08;
+    margin: 0 0 0.9rem;
+    color: #FFFFFF;
+  }
+
+  .hero p.sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: rgba(255,255,255,0.85);
+    margin: 0 0 2.2rem;
+  }
+
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2.4rem;
+    flex-wrap: wrap;
+    font-size: 0.86rem;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .hero-meta strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: #FFFFFF;
+    font-weight: 500;
+  }
+
+  .nav-chips {
+    max-width: 980px;
+    margin: -1.6rem auto 0;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.6rem;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .chip {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: #FFFFFF;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.55);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 2px 10px var(--shadow);
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .chip:hover { background: #FFFFFF; color: var(--band); border-color: #FFFFFF; }
+
+  main {
+    max-width: 780px;
+    margin: 4.5rem auto 2rem;
+    padding: 0 1.5rem;
+  }
+
+  .category {
+    margin-bottom: 3.2rem;
+  }
+
+  .category-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .category-head h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin: 0;
+    color: #FFFFFF;
+  }
+
+  .category-count {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.8);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.1rem 0.55rem;
+    margin-left: auto;
+  }
+
+  ul.entries {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li.entry {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+  li.entry:last-child { border-bottom: none; }
+
+  .entry-name {
+    font-family: var(--font-display);
+    font-size: 1.08rem;
+    font-weight: 400;
+  }
+
+  a.supplier-link {
+    color: #FFFFFF;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.55);
+    padding-bottom: 1px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  a.supplier-link:hover {
+    color: #FFF6E9;
+    border-color: #FFFFFF;
+  }
+
+  span.supplier-plain {
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+  }
+
+  .entry-dest {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.72);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  footer {
+    max-width: 780px;
+    margin: 0 auto 4rem;
+    padding: 2rem 1.5rem 0;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    color: rgba(255,255,255,0.72);
+    font-size: 0.78rem;
+  }
+
+  @media (max-width: 560px) {
+    .hero { padding: 3.2rem 1.2rem 3rem; }
+    main { margin-top: 3.5rem; }
+    li.entry { flex-direction: column; gap: 0.15rem; }
+    .entry-dest { order: -1; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">GMF EUROAMERICAN</div>
+      <h1>Directorio de Proveedores</h1>
+      <p class="sub">Madrid · 22&ndash;24 de noviembre</p>
+      <div class="hero-meta">
+        <div><strong>58</strong>proveedores</div>
+        <div><strong>8</strong>categorías</div>
+        <div><strong>Provisional</strong>lista de trabajo</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-chips">
+    <a href="#destination-convention-bureau" class="chip">Destinos &amp; Convention Bureaus</a>
+<a href="#dmc" class="chip">DMC — Destination Management</a>
+<a href="#hotel" class="chip">Hoteles</a>
+<a href="#hotel-chain" class="chip">Cadenas Hoteleras</a>
+<a href="#venues-mice" class="chip">Espacios &amp; Venues MICE</a>
+<a href="#catering" class="chip">Catering</a>
+<a href="#audiovisuals" class="chip">Audiovisuales</a>
+<a href="#experiencias" class="chip">Experiencias</a>
+  </nav>
+
+  <main>
+    
+    <section class="category" id="destination-convention-bureau">
+      <div class="category-head">
+        <h2>Destinos &amp; Convention Bureaus</h2>
+        <span class="category-count">7</span>
+      </div>
+      <ul class="entries">
+        
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.esmadrid.com/mcb?utm_source=chatgpt.com" target="_blank" rel="noopener">Madrid Convention Bureau</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.sevillecongress.org/?utm_source=chatgpt.com" target="_blank" rel="noopener">Sevilla Convention Bureau</a></span>
+              <span class="entry-dest">Sevilla</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.caribemexicano.travel/?utm_source=chatgpt.com" target="_blank" rel="noopener">CPTQ (Caribe Mexicano)</a></span>
+              <span class="entry-dest">México</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.aranjuez.es/turismo?utm_source=chatgpt.com" target="_blank" rel="noopener">Turismo de Aranjuez</a></span>
+              <span class="entry-dest">Aranjuez</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.turismo.gal/?utm_source=chatgpt.com" target="_blank" rel="noopener">Turismo de Galicia</a></span>
+              <span class="entry-dest">Galicia</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.visitvalencia.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Visit Valencia</a></span>
+              <span class="entry-dest">Valencia</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.webtenerife.co.uk/tenerifecb/" target="_blank" rel="noopener">Tenerife CB</a></span>
+              <span class="entry-dest">Tenerife</span>
+            </li>
+      </ul>
+    </section>
+
+    <section class="category" id="dmc">
+      <div class="category-head">
+        <h2>DMC — Destination Management</h2>
+        <span class="category-count">3</span>
+      </div>
+      <ul class="entries">
+        
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://century-incoming.com/" target="_blank" rel="noopener">Century Incoming</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.siciliasenzapensieri.it/about-us/?lang=en" target="_blank" rel="noopener">DUAL DMC</a></span>
+              <span class="entry-dest">Sicilia</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://lifexperiences.com/en" target="_blank" rel="noopener">LifeXperiences</a></span>
+              <span class="entry-dest">Mallorca</span>
+            </li>
+      </ul>
+    </section>
+
+    <section class="category" id="hotel">
+      <div class="category-head">
+        <h2>Hoteles</h2>
+        <span class="category-count">14</span>
+      </div>
+      <ul class="entries">
+        
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.aubamar.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Aubamar Hotels</a></span>
+              <span class="entry-dest">Mallorca</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.coolrooms.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">CoolRooms</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://hotel.hardrock.com/marbella/" target="_blank" rel="noopener">Hard Rock Marbella</a></span>
+              <span class="entry-dest">Marbella</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.hilton.com/en/hotels/pmigihi-hilton-mallorca-galatzo/?utm_source=chatgpt.com" target="_blank" rel="noopener">Hilton Mallorca Galatzo</a></span>
+              <span class="entry-dest">Mallorca</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.hotelbotanico.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Hotel Botánico &amp; Spa</a></span>
+              <span class="entry-dest">Tenerife</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.emperadorhotel.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Hotel Emperador</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.marriott.com/en-us/hotels/ncele-le-meridien-nice/overview/?utm_source=chatgpt.com" target="_blank" rel="noopener">Le Meridien Nice</a></span>
+              <span class="entry-dest">Nice</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.marriott.com/en-us/hotels/madad-madrid-marriott-auditorium-hotel-and-conference-center/overview/?utm_source=chatgpt.com" target="_blank" rel="noopener">Marriot Madrid Auditorium</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.melia.com/es/hoteles/espana/madrid/melia-avenida-america?utm_source=chatgpt.com" target="_blank" rel="noopener">Melia Avenida de América</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.melia.com/es/hoteles/espana/madrid/melia-castilla?utm_source=chatgpt.com" target="_blank" rel="noopener">Melia Castilla</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://all.accor.com/hotel/8485/index.es.shtml?utm_source=chatgpt.com" target="_blank" rel="noopener">Novotel Madrid Center</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://granhoteltaoro.com/en/?_gl=1*oz7s8m*_up*MQ..*_gs*MQ..&amp;gclid=Cj0KCQjwg5zTBhCLARIsAP2AFU7h8u0DPOoJ1funoSnRROwDEGysrBOsxZi6k3ORDg31U9-wnPgjeP0aAvXKEALw_wcB&amp;gbraid=0AAAAAoY0EasSDrmfpFS8eayYcBIYICJnY" target="_blank" rel="noopener">Gran Hotel Taoro</a></span>
+              <span class="entry-dest">Tenerife</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.bagliooneto.it/" target="_blank" rel="noopener">Blagio Oneto</a></span>
+              <span class="entry-dest">Sicilia</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.melia.com/es/hoteles/espana/benidorm/melia-villaitana?esl-k=sem-google%7Cng%7Cc675508261814%7Cmp%7Ckmelia%20villaitana%7Cp%7Ct%7Cdc%7Ca134023296212%7Cg14889597723&amp;gclsrc=aw.ds&amp;&amp;gad_source=1&amp;gad_campaignid=14889597723&amp;gbraid=0AAAAADjC5K2bRiUQQJJ4U9WvPpz_05RMY&amp;gclid=Cj0KCQjwnbrUBhDOARIsAKKhPpfDzGfgkI-_Py0RLBJAyZqESvT_MWQHvBcPfh4Wpp8oSy9N_4L0bqQaAm6fEALw_wcB" target="_blank" rel="noopener">Melia Villaitana</a></span>
+              <span class="entry-dest">Benidorm</span>
+            </li>
+      </ul>
+    </section>
+
+    <section class="category" id="hotel-chain">
+      <div class="category-head">
+        <h2>Cadenas Hoteleras</h2>
+        <span class="category-count">20</span>
+      </div>
+      <ul class="entries">
+        
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.1881hotels.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">1881 Hotels</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.aquahotel.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Aqua Hotel Group</a></span>
+              <span class="entry-dest">Barcelona</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.barcelo.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Barceló Hotel Group</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.derbyhotels.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Derby Hotels</a></span>
+              <span class="entry-dest">Barcelona</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.discoveryportugal.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Discovery Portugal</a></span>
+              <span class="entry-dest">Portugal</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.eurostarshotels.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Eurostars</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.hcchotels.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">HCC Hotels</a></span>
+              <span class="entry-dest">Barcelona</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.hesperiaworld.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Hesperia World</a></span>
+              <span class="entry-dest">Barcelona</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.hotelsviva.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">HOTELS VIVA</a></span>
+              <span class="entry-dest">Mallorca</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.invisahoteles.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Invisa Hotels</a></span>
+              <span class="entry-dest">Ibiza</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.lopesan.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Lopesan Hotel Group</a></span>
+              <span class="entry-dest">Gran Canaria</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.melia.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Melia Hotels Madrid</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.onahotels.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Ona Hotels</a></span>
+              <span class="entry-dest">Barcelona</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.sercotelhoteles.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Sercotel Hoteles</a></span>
+              <span class="entry-dest">Sevilla</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://orbityhotelmanagement.com/en/" target="_blank" rel="noopener">Orbit Hospitality</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.nnhotels.com/en" target="_blank" rel="noopener">Nuñez i Navarro</a></span>
+              <span class="entry-dest">Barcelona</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.panoramhotels.com/en/" target="_blank" rel="noopener">Panoram Hotels Management</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://royalhotelsbarcelona.com/en/" target="_blank" rel="noopener">Royal Hotels Barcelona</a></span>
+              <span class="entry-dest">Barcelona</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://purogroup.com/purohotels/en/home" target="_blank" rel="noopener">Puro Group Hotels</a></span>
+              <span class="entry-dest">Mallorca</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.payahotels.com/en/paya-suites/?origin_source=google&amp;origin_medium=cpc&amp;origin_campaign=22272245193_172346274941&amp;gad_source=1&amp;gad_campaignid=22272245193&amp;_gl=1*4yf47n*_up*MQ..*_gs*MQ..&amp;gclid=CjwKCAjwqonVBhA4EiwA9wYJ3VNucIxvGoO-SY7-9suTX2uZHB6bh_AKRKqUSOP3cjvBRTnORv1URxoCIAcQAvD_BwE&amp;gbraid=0AAAAA-1w5MLNa3oot07oklXKyZFsnZPse" target="_blank" rel="noopener">Paya Hotels</a></span>
+              <span class="entry-dest">Formentera</span>
+            </li>
+      </ul>
+    </section>
+
+    <section class="category" id="venues-mice">
+      <div class="category-head">
+        <h2>Espacios &amp; Venues MICE</h2>
+        <span class="category-count">10</span>
+      </div>
+      <ul class="entries">
+        
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.azoteagrupo.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Azotea Grupo</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.floridapark.es/?utm_source=chatgpt.com" target="_blank" rel="noopener">Florida Park</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.grupolancaster.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Grupo Lancaster</a></span>
+              <span class="entry-dest">Barcelona</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.wevenue.es/?utm_source=chatgpt.com" target="_blank" rel="noopener">GRUPO WEVENUE</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.juveycamps.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Juvé &amp; Camps</a></span>
+              <span class="entry-dest">Barcelona</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.wahshow.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">WAH Madrid</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.teatropereyraibiza.com/en/" target="_blank" rel="noopener">Teatro Pereyra</a></span>
+              <span class="entry-dest">Ibiza</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://negralejo.com/" target="_blank" rel="noopener">Negralejo Group</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://casanisgroup.eu/" target="_blank" rel="noopener">Casanis Group</a></span>
+              <span class="entry-dest">Marbella</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><span class="supplier-plain">Complejo El Olivar</span></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+      </ul>
+    </section>
+
+    <section class="category" id="catering">
+      <div class="category-head">
+        <h2>Catering</h2>
+        <span class="category-count">1</span>
+      </div>
+      <ul class="entries">
+        
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.foshcatering.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Fosh Catering</a></span>
+              <span class="entry-dest">Mallorca</span>
+            </li>
+      </ul>
+    </section>
+
+    <section class="category" id="audiovisuals">
+      <div class="category-head">
+        <h2>Audiovisuales</h2>
+        <span class="category-count">1</span>
+      </div>
+      <ul class="entries">
+        
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.bmotion.es/?utm_source=chatgpt.com" target="_blank" rel="noopener">Bmotion</a></span>
+              <span class="entry-dest">Madrid</span>
+            </li>
+      </ul>
+    </section>
+
+    <section class="category" id="experiencias">
+      <div class="category-head">
+        <h2>Experiencias</h2>
+        <span class="category-count">2</span>
+      </div>
+      <ul class="entries">
+        
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.riverside-cruises.com/?utm_source=chatgpt.com" target="_blank" rel="noopener">Riverside Luxury Cruises</a></span>
+              <span class="entry-dest">Gran Canaria</span>
+            </li>
+
+            <li class="entry">
+              <span class="entry-name"><a class="supplier-link" href="https://www.timeout.com/time-out-market-barcelona" target="_blank" rel="noopener">Time Out Market</a></span>
+              <span class="entry-dest">Barcelona</span>
+            </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Lista provisional de proveedores · GMF Euroamerican Forums · Madrid, 22&ndash;24 de noviembre
+  </footer>
+
+</body>
+</html>
